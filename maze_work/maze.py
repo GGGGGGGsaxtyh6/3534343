@@ -1,6 +1,7 @@
 # uncompyle6 version 3.9.3
 # Python bytecode version base 3.8.0 (3413)
-# Decompiled from: Python 3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]
+# Decompiled from: Python 3.8.20 (default, Sep  7 2024, 18:35:07) 
+# [GCC 13.2.0]
 # Embedded file name: maze.py
 import sys, obf_path
 ZIPFILE = "enc_maze.zip"
