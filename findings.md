@@ -58,16 +58,35 @@
 - **Horde webmail**: Multiple CVEs requiring auth
 
 ## Exploitation Attempts
-1. SQL injection on login forms - No injection found (DB appears down)
-2. Plesk auth bypass CVE-2025-54336 - Failed (password not 0e prefixed)
-3. AWS credentials from Plesk JS - Telemetry only, no useful access
-4. SSH brute force - Failed
-5. Plesk XML API brute force - Failed
-6. IMAP brute force - Hydra reported "baja" as password but appears to be false positive
-7. 403 bypass techniques - No bypass found
-8. phpinfo/backup file hunting - Nothing found
-9. Plesk REST API v2 (Swagger documented) - All endpoints require auth
-10. Plesk password reset triggered - Email sent but can't access inbox
+1. SQL injection on login forms (forms/control.php, contacto/control.php) - DB connection appears broken, all return 500
+2. SQL injection on contact2.php lead submission form - No injection found
+3. Plesk auth bypass CVE-2025-54336 - Failed (admin password not 0e prefixed)
+4. AWS credentials from Plesk JS (AKIAR4YEYRJLXPZPYBFL) - Telemetry-only IAM user, no useful access
+5. SSH brute force (hydra, port 50050) - Failed with multiple username/password combinations
+6. Plesk XML API brute force (admin, root usernames) - Failed with 700+ passwords
+7. IMAP/IMAPS brute force (hydra, fibytel@fibytel.es) - Hydra reported "baja" = FALSE POSITIVE
+8. 403 bypass techniques on /forms/, /pdf/, /test/, /assets/ - No bypass found
+9. phpinfo/backup file hunting - Nothing found across all directories
+10. Plesk REST API v2 (Swagger documented at /api/v2/) - All 32 endpoints require auth
+11. WP Toolkit API (77 endpoints at /api/modules/wp-toolkit/) - All require auth
+12. Plesk password reset triggered via get_password.php - Email sent to admin but can't access inbox
+13. LFI testing on all PHP pages - No inclusion vulnerability found
+14. Directory enumeration (gobuster, manual) - Found /contacto/ sub-app, /pdf/, /test/ (all 403)
+15. Wayback Machine OSINT - Found meinteresa.php lead form, sitemap.xml (404 now)
+16. DNS zone transfer - Denied
+17. Reverse IP lookup - Found 7 domains on same IP (cblcom.com, fibytel.com, etc.)
+18. Second IP (185.45.74.200) from SPF record - Hosting provider server, not useful
+19. FTP anonymous/brute force - Port filtered/timeout
+20. SMTP VRFY email enumeration - Disabled by Postfix
+21. ProFTPD CVE-2024-48651 investigation - Can't connect to FTP
+22. OpenSSH 7.4 CVE-2024-6387 (regreSSHion) - Not affected (version not in range)
+
+## Key Internal Pages Found
+- `/facturas.php` - 302 redirects to clientes.php (requires authenticated session)
+- `/salir.php` - Logout page (200, redirects to clientes.php)
+- `/contactook.php` - Contact form success page
+- `/contactono.php` - Contact form failure page  
+- `/meinteresa.php` - Lead capture form (ACTIVE, 200)
 
 ## Lead Form Parameters (from meinteresa.php)
 - name (Nombre)
@@ -77,3 +96,10 @@
 - message (Mensaje)
 - val (hidden - product name)
 - val1 (hidden - product description)
+
+## Most Promising Attack Vectors Remaining
+1. **Email credential brute force** - If cracked, gives access to Plesk reset emails + leads sent via email
+2. **Plesk panel access** - Full control of server including database, file manager
+3. **PHP session manipulation** - Login returns 500 but creates session; need to authenticate session
+4. **Larger wordlist IMAP brute force** - Rate limited but possible with patience
+5. **ProFTPD direct file access** - If FTP becomes available, can read PHP source code for DB credentials
