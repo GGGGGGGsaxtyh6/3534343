@@ -108,10 +108,45 @@ Todos requieren `token_id` header excepto `/services/recuperarPasswd/`:
 9. **cfdb7_uploads** y **wpcf7_uploads** existen (403)
 10. **Stack trace Java** expuesto al enviar _LANG como integer
 
-## Próximos Pasos
+## Vectores de Ataque Probados
 
-1. Explotar CVE-2026-0825 encontrando la export key
-2. Brute force WP con wordlist más grande (server rate limits multicall)
-3. Explorar CVE-2024-38474 para leer wp-config.php.bak
-4. Intentar acceso al Nextcloud con más combinaciones
-5. Explorar las IPs LUXUNIT/IPSECURITY para leads en otros sistemas
+### Intentados (sin éxito)
+- Brute force xmlrpc WP (rate limited / connection drops)
+- SQL injection en login Gossan (prepared statements)
+- SQL injection en recuperación de contraseña (todos los campos)
+- Bypass 403 en wp-config.php.bak (path manipulation, headers, encoding)
+- Registro de usuario WP via REST API
+- Acceso CF7 entries sin auth (REST API, admin-ajax.php)
+- Brute force Nextcloud (multiple users/passwords)
+- Virtual host fuzzing (ffuf en las 3 IPs)
+- Directory fuzzing (dirsearch/ffuf en ambos sitios)
+- IDOR en facturas/clientes Gossan
+- Type juggling en export CSV
+
+### Vectores Prometedores Pendientes
+1. **CVE-2026-0825** (Contact Form Entries export CSV): `admin-post.php` es ACCESIBLE y ejecuta el código del plugin. Falta encontrar la export key que debería estar en alguna página con shortcode `[vx-entries export=true]`
+2. **Brute force WP** con lotes más pequeños (1-5 passwords por request) para evitar rate limiting
+3. **wp-config.php.bak** existe (403) - necesita bypass avanzado de Apache
+4. **Stack trace Java** expuesto - puede revelar más endpoints del servlet
+5. **Nextcloud shared links** - buscar tokens de compartición en el contenido del sitio
+6. **Apache mod_rewrite CVE-2024-38474** - bypass de restricciones en Apache 2.4.37
+
+## Información Técnica Detallada
+
+### Java Stack Trace (al enviar _LANG como integer)
+```
+es.gossan.gosbilling.gosresources.ClientesRESTServlet.recuperarParametrosRequest(ClientesRESTServlet.java:206)
+es.gossan.gosbilling.gosresources.ClientesRESTServlet.doPost(ClientesRESTServlet.java:131)
+jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+es.gossan.gosbilling.gosresources.ClientesRESTFilter.doFilter(ClientesRESTFilter.java:26)
+```
+
+### Comportamiento del WAF (423 Locked)
+- Bloquea: POST a admin-ajax.php con ciertos params, arrays en URL, params vacíos
+- Permite: GET a admin-post.php con params simples (key=1, key=test, key=true)
+- No bloquea: xmlrpc.php, REST API, /services/ endpoint
+
+### Emails Confirmados
+- liberaadmin → info@liberatelecom.es (gravatar MD5 match)
+- contacto empresa: hola@liberatelecom.es, info@liberatelecom.es
+- teléfono: 868289754, WhatsApp: 698969091
