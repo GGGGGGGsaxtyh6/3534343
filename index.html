@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Identidad</title>
+  <style>
+    @font-face {
+      font-family: "Ibercaja";
+      src: url("fonts/Ibercaja-Light.woff2") format("woff2");
+      font-weight: 300;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "Ibercaja";
+      src: url("fonts/Ibercaja-Regular.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "Ibercaja";
+      src: url("fonts/Ibercaja-Medium.woff2") format("woff2");
+      font-weight: 500;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "Ibercaja";
+      src: url("fonts/Ibercaja-Bold.woff2") format("woff2");
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      font-family: "Ibercaja", sans-serif;
+      background: #ffffff;
+      color: #212932;
+      min-height: 100vh;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 16px;
+      border-bottom: 1px solid #e8eaea;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .logo-text {
+      font-family: "Ibercaja", sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: #212932;
+      letter-spacing: -0.2px;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 22px;
+    }
+
+    /* ─── BANNER DEMO ─── */
+    .banner {
+      background: #ffffff;
+      border-bottom: 1px solid #e8eaea;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .banner-text {
+      flex: 1;
+    }
+
+    .banner-title {
+      font-family: "Ibercaja", sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      color: #212932;
+      line-height: 1.3;
+    }
+
+    .banner-subtitle {
+      font-family: "Ibercaja", sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      color: #778088;
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+
+    .btn-demo {
+      background: #0168ff;
+      color: #ffffff;
+      font-family: "Ibercaja", sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-demo svg {
+      width: 10px;
+      height: 10px;
+      fill: #ffffff;
+    }
+
+    /* ─── CONTENIDO PRINCIPAL ─── */
+    .main-content {
+      padding: 28px 24px 0;
+    }
+
+    /* ─── HEADING ACCESO CLIENTES ─── */
+    .heading {
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-family: "Ibercaja", sans-serif;
+      font-weight: 300;
+      font-size: 2.4rem;
+      line-height: 1.2;
+      display: flex;
+      gap: 0.75em;
+      flex-wrap: wrap;
+    }
+
+    h1 .word-acceso {
+      color: #0168ff;
+    }
+
+    h1 .word-clientes {
+      color: #ff4747;
+    }
+
+    .subtitle {
+      font-family: "Ibercaja", sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      color: #778088;
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* ─── FORMULARIO ─── */
+    .form-section {
+      margin-top: 24px;
+    }
+
+    .field-group {
+      margin-bottom: 20px;
+    }
+
+    .field-label {
+      display: block;
+      font-family: "Ibercaja", sans-serif;
+      font-weight: 400;
+      font-size: 13.5px;
+      color: #212932;
+      margin-bottom: 6px;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .form-input {
+      width: 100%;
+      height: 44px;
+      padding: 0 12px;
+      border: 1px solid #0168ff;
+      border-radius: 2px;
+      font-family: "Ibercaja", sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      color: #212932;
+      background: #ffffff;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .form-input:focus {
+      border-color: #0168ff;
+      border-width: 2px;
+    }
+
+    .form-input::placeholder {
+      color: #c0c4c8;
+    }
+
+    .form-input.has-value {
+      color: #212932;
+    }
+
+    .toggle-eye {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .toggle-eye svg {
+      width: 20px;
+      height: 20px;
+      fill: #778088;
+    }
+
+    .password-field {
+      padding-right: 44px;
+    }
+
+    /* ─── LINK OLVIDÉ ─── */
+    .forgot-link {
+      display: block;
+      text-align: right;
+      font-family: "Ibercaja", sans-serif;
+      font-weight: 400;
+      font-size: 10.5px;
+      color: #778088;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    /* ─── BOTÓN ENTRAR ─── */
+    .btn-entrar {
+      width: 100%;
+      height: 44px;
+      background: #0168ff;
+      color: #ffffff;
+      border: none;
+      border-radius: 2px;
+      font-family: "Ibercaja", sans-serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      margin-top: 20px;
+    }
+
+    .btn-entrar.disabled {
+      background: #e8eaea;
+      color: #778088;
+      cursor: not-allowed;
+    }
+
+    .btn-entrar .chevron-right {
+      width: 8px;
+      height: 14px;
+    }
+
+    /* ─── FILAS SECUNDARIAS ─── */
+    .secondary-rows {
+      margin-top: 0;
+      border-top: 1px solid #e8eaea;
+    }
+
+    .secondary-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 0;
+      border-bottom: 1px solid #e8eaea;
+      cursor: pointer;
+    }
+
+    .secondary-row-label {
+      font-family: "Ibercaja", sans-serif;
+      font-weight: 400;
+      font-size: 11.5px;
+      color: #212932;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+
+    .secondary-row .chevron-right {
+      width: 7px;
+      height: 12px;
+      color: #778088;
+    }
+
+    /* ─── SECCIÓN AYUDA ─── */
+    .help-section {
+      background: #f5f5f5;
+      padding: 24px;
+      margin-top: 16px;
+    }
+
+    .help-title {
+      font-family: "Ibercaja", sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      color: #212932;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #d9ddde;
+    }
+
+    .help-body-title {
+      font-family: "Ibercaja", sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      color: #212932;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .help-list {
+      list-style: disc;
+      padding-left: 18px;
+      margin-bottom: 12px;
+    }
+
+    .help-list li {
+      font-family: "Ibercaja", sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      color: #555e66;
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+
+    .help-link-row {
+      font-family: "Ibercaja", sans-serif;
+      font-weight: 400;
+      font-size: 12.5px;
+      color: #555e66;
+      margin-bottom: 16px;
+    }
+
+    .help-link-row a {
+      color: #0168ff;
+      text-decoration: underline;
+    }
+
+    .help-divider {
+      border: none;
+      border-top: 1px solid #d9ddde;
+      margin: 16px 0;
+    }
+
+    .app-download-title {
+      font-family: "Ibercaja", sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      color: #212932;
+      margin-bottom: 12px;
+    }
+
+    .app-badges {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .app-badge {
+      height: 36px;
+      cursor: pointer;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #444c53;
+      padding: 20px 24px;
+      margin-top: 0;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .footer-logo-icon {
+      width: 28px;
+      height: 28px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+    }
+
+    .footer-link {
+      font-family: "Ibercaja", sans-serif;
+      font-weight: 400;
+      font-size: 10.5px;
+      color: #c0c6cb;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <span class="logo-text">Ibercaja</span>
+      <svg class="logo-icon" viewBox="88 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M102.527 14.6761C102.423 14.9669 102.451 15.0708 102.423 15.4516C102.409 15.7354 102.437 15.9777 102.478 16.1716C102.513 16.3654 102.527 16.6285 102.665 16.8847C102.762 17.0647 102.811 17.217 102.914 17.3693C102.998 17.4939 103.039 17.7016 103.143 17.7709C103.281 17.9093 103.371 18.0686 103.496 18.1863C103.614 18.3386 103.752 18.4632 103.911 18.567C104.174 18.754 104.334 18.844 104.59 19.017C104.798 19.1555 104.715 19.2801 104.978 19.3632C105.061 19.3978 105.255 19.4878 105.365 19.5224C105.504 19.5778 105.635 19.654 105.753 19.7509C106.099 20.014 106.397 20.014 106.888 20.1109C107.2 20.2009 107.498 20.3532 107.795 20.4225C108.024 20.4709 108.142 20.4225 108.356 20.4571C108.488 20.4848 108.619 20.5263 108.744 20.5817C109 20.6371 110.295 20.6786 110.689 20.6163C110.869 20.5886 111.049 20.5886 111.229 20.6163C111.458 20.6163 111.686 20.5817 111.908 20.5263C112.344 20.4709 112.482 20.5056 112.856 20.4571C113.133 20.4225 113.556 20.2702 113.853 20.194C114.85 19.9309 115.203 19.9863 116.02 19.6886C116.263 19.5986 116.775 19.4255 116.969 19.3217C117.232 19.2178 117.495 19.1278 117.772 19.0586C118.139 18.9547 118.367 18.6778 118.769 18.7124C118.769 18.7124 118.893 18.9963 118.783 19.1071C118.526 19.3701 118.436 19.3909 118.16 19.5155C118 19.5848 117.841 19.7786 117.71 19.8478C117.571 19.9171 117.433 19.9794 117.315 20.0625C117.135 20.1663 117.08 20.4017 116.962 20.5263C116.664 20.8033 116.207 20.9417 115.826 21.1702C115.522 21.3294 115.231 21.5094 114.954 21.7102C114.795 21.8002 114.622 21.7794 114.463 21.9041C114.379 21.9594 113.964 22.2018 113.819 22.2364C113.625 22.3264 112.856 22.5687 112.593 22.6172C112.33 22.6656 112.171 22.811 111.942 22.8456C111.804 22.8802 111.236 22.9979 111.105 23.0395C110.932 23.0949 110.246 23.2333 110.004 23.2333C109.215 23.1987 109.284 23.4618 108.515 23.4964C106.771 23.7733 104.493 23.3441 104.036 23.1641C103.614 23.1087 103.427 23.0395 102.651 22.6933C99.8682 21.5302 98.1581 18.3455 97.8951 17.9647C97.632 17.5839 97.3481 16.31 97.175 15.9293C97.0643 15.4031 96.995 14.87 96.9743 14.33C96.905 13.0976 97.0435 11.8861 97.4035 10.7022C97.4035 10.7022 98.2758 7.12283 102.492 3.77889C105.213 1.65344 107.968 1.25881 109.388 0.788024C110.198 0.518015 111.022 0.476476 111.423 0.441859C111.901 0.40032 113.542 0.497246 114.172 0.628788C115.044 0.815717 117.211 1.65344 118.277 2.48423C118.381 2.53269 118.471 2.58808 118.554 2.65731C118.637 2.72655 118.713 2.80962 118.783 2.89963C118.845 2.98963 118.9 3.08656 118.935 3.19041C118.976 3.29425 118.997 3.3981 119.011 3.50888C119.046 3.75119 119.253 3.86889 119.17 4.22198C119.122 4.36044 118.997 4.39506 118.976 4.56814C118.942 4.70661 119.046 4.77584 119.011 4.90046C118.914 5.13585 118.783 5.3574 118.623 5.55817C118.485 5.73125 118.028 6.07742 117.82 6.0428C117.419 5.9528 117.066 5.59279 116.422 5.59279C115.376 5.59279 114.483 5.46817 113.479 5.66202C113.251 5.71741 113.133 5.71741 112.801 5.78664C112.469 5.85587 112.275 5.98049 111.929 6.04972C111.631 6.10511 111.437 6.18819 111.215 6.23665C110.987 6.28512 110.987 6.32666 110.793 6.30589C110.662 6.29204 110.516 6.44435 110.412 6.49282C110.094 6.65205 109.748 6.73513 109.45 6.8736C109.083 7.03976 108.73 7.22668 108.384 7.42746C108.28 7.51746 108.169 7.59362 108.052 7.65593C107.92 7.73208 107.809 7.83593 107.719 7.95363C107.595 8.13364 107.373 8.12671 107.214 8.26518C106.84 8.59057 106.688 8.72904 106.369 9.10982C106.293 9.20675 105.933 9.43521 105.815 9.51829C105.642 9.64291 105.642 9.81599 105.462 9.93369C105.213 10.1137 104.998 10.3283 104.811 10.5776C104.811 10.5776 102.998 12.5784 102.548 14.6623" fill="#FF4747"/>
+        <path d="M88.7852 12.6545C88.7852 11.5537 96.8993 10.6675 106.883 10.6675C116.866 10.6675 124.994 11.5537 124.994 12.6545C124.994 13.7553 116.873 14.6415 106.883 14.6415C96.8923 14.6415 88.7852 13.7414 88.7852 12.6545Z" fill="#0168FF"/>
+        <path d="M121.213 15.0703C120.396 15.0703 119.725 15.7349 119.725 16.5588C119.725 17.3827 120.389 18.0473 121.213 18.0473C122.037 18.0473 122.702 17.3827 122.702 16.5588C122.702 15.7349 122.037 15.0703 121.213 15.0703Z" fill="#0168FF"/>
+      </svg>
+    </div>
+  </header>
+
+  <!-- BANNER DEMO -->
+  <div class="banner">
+    <div class="banner-text">
+      <div class="banner-title">Descubre la banca digital</div>
+      <div class="banner-subtitle">Te invitamos a descubrir todas las funcionalidades disponibles</div>
+    </div>
+    <button class="btn-demo">
+      DEMO
+      <svg viewBox="0 0 8 12" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1.5 1L6.5 6L1.5 11" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+
+    <!-- HEADING -->
+    <div class="heading">
+      <h1>
+        <span class="word-acceso">Acceso</span>
+        <span class="word-clientes">clientes</span>
+      </h1>
+      <span class="subtitle" id="okMessage">Introduce los datos solicitados</span>
+    </div>
+
+    <!-- FORM -->
+    <div class="form-section">
+
+      <div class="field-group">
+        <label class="field-label" for="username">Código de identificación</label>
+        <div class="input-wrapper">
+          <input
+            id="username"
+            class="form-input"
+            type="text"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="password">Clave de acceso</label>
+        <div class="input-wrapper">
+          <input
+            id="password"
+            class="form-input password-field"
+            type="password"
+            autocomplete="off"
+          />
+          <button class="toggle-eye" type="button" id="toggleEye" aria-label="Mostrar clave">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <a class="forgot-link" href="#">Olvidé mi clave de acceso</a>
+
+      <button class="btn-entrar disabled" id="btnEntrar" type="button">
+        <span>ENTRAR</span>
+        <svg class="chevron-right" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L7 7L1 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+    </div>
+
+    <!-- FILAS SECUNDARIAS -->
+    <div class="secondary-rows">
+      <div class="secondary-row">
+        <span class="secondary-row-label">Solo consultas</span>
+        <svg class="chevron-right" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L7 7L1 13" stroke="#778088" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="secondary-row">
+        <span class="secondary-row-label">Confirming no clientes</span>
+        <svg class="chevron-right" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L7 7L1 13" stroke="#778088" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECCIÓN AYUDA -->
+  <div class="help-section">
+    <div class="help-title">¿Necesitas ayuda?</div>
+    <div class="help-body-title">Sigue nuestros consejos y ponte al día en seguridad.</div>
+    <ul class="help-list">
+      <li>Nunca facilites tus claves ni información personal.</li>
+      <li>Nunca te enviaremos enlaces para acceder a tu Banca Digital.</li>
+      <li>Contacta con Ibercaja solo a través de canales oficiales.</li>
+    </ul>
+    <div class="help-link-row">
+      Saber más <a href="#">Hazte fan de la seguridad</a>
+    </div>
+    <hr class="help-divider" />
+    <div class="app-download-title">Descarga nuestra App en tu móvil:</div>
+    <div class="app-badges">
+      <!-- App Store badge -->
+      <svg class="app-badge" viewBox="0 0 120 36" xmlns="http://www.w3.org/2000/svg">
+        <rect width="120" height="36" rx="5" fill="#000"/>
+        <text x="60" y="14" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#fff">Disponible en</text>
+        <text x="60" y="26" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="600" fill="#fff">App Store</text>
+        <path d="M14 9.5c1.1-1.3 1.8-3.1 1.6-4.9-1.5.1-3.4 1-4.5 2.3C10 8.1 9.2 9.9 9.5 11.7c1.7.1 3.3-.9 4.5-2.2zM15.5 12c-2.5-.1-4.6 1.4-5.8 1.4-1.2 0-3-1.3-5-1.3C2 12.2 0 14 0 17.5c0 3.5 2.3 8.6 4.7 11.4 1.2 1.4 2.5 3 4.2 3 1.7 0 2.3-1.1 4.3-1.1 2 0 2.5 1.1 4.3 1.1 1.7 0 3-1.6 4.2-3 .8-1 1.4-2 1.9-3.1-1.8-.9-3-2.8-3-5 0-2 1-3.7 2.7-4.8-.9-2.8-3-4.9-5.8-5z" transform="scale(0.65) translate(3, 4)" fill="#fff"/>
+      </svg>
+      <!-- Google Play badge -->
+      <svg class="app-badge" viewBox="0 0 135 36" xmlns="http://www.w3.org/2000/svg">
+        <rect width="135" height="36" rx="5" fill="#000"/>
+        <text x="67" y="14" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" fill="#fff">Disponible en</text>
+        <text x="67" y="26" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="600" fill="#fff">Google Play</text>
+        <g transform="translate(8, 8) scale(0.65)">
+          <path d="M1.2 0C0.5 0.4 0 1.1 0 2v20c0 .9.5 1.6 1.2 2l11.3-11L1.2 0z" fill="#4FC3F7"/>
+          <path d="M16 11L12.5 13l-11.3 11c.3.2.6.3 1 .3.4 0 .8-.1 1.1-.3L16 15.5 16 11z" fill="#4CAF50"/>
+          <path d="M3.3.3L16 8.5V11L3.3 3.2C3 3 2.6 2.9 2.3 2.9c-.4 0-.8.1-1.1.3" fill="#FDD835"/>
+          <path d="M16 8.5L3.3 0.3C3 0.1 2.6 0 2.3 0c.4 0 .8.1 1.1.3L16 8.5z" fill="#FF7043"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">
+      <svg class="footer-logo-icon" viewBox="88 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M102.527 14.6761C102.423 14.9669 102.451 15.0708 102.423 15.4516C102.409 15.7354 102.437 15.9777 102.478 16.1716C102.513 16.3654 102.527 16.6285 102.665 16.8847C102.762 17.0647 102.811 17.217 102.914 17.3693C102.998 17.4939 103.039 17.7016 103.143 17.7709C103.281 17.9093 103.371 18.0686 103.496 18.1863C103.614 18.3386 103.752 18.4632 103.911 18.567C104.174 18.754 104.334 18.844 104.59 19.017C104.798 19.1555 104.715 19.2801 104.978 19.3632C105.061 19.3978 105.255 19.4878 105.365 19.5224C105.504 19.5778 105.635 19.654 105.753 19.7509C106.099 20.014 106.397 20.014 106.888 20.1109C107.2 20.2009 107.498 20.3532 107.795 20.4225C108.024 20.4709 108.142 20.4225 108.356 20.4571C108.488 20.4848 108.619 20.5263 108.744 20.5817C109 20.6371 110.295 20.6786 110.689 20.6163C110.869 20.5886 111.049 20.5886 111.229 20.6163C111.458 20.6163 111.686 20.5817 111.908 20.5263C112.344 20.4709 112.482 20.5056 112.856 20.4571C113.133 20.4225 113.556 20.2702 113.853 20.194C114.85 19.9309 115.203 19.9863 116.02 19.6886C116.263 19.5986 116.775 19.4255 116.969 19.3217C117.232 19.2178 117.495 19.1278 117.772 19.0586C118.139 18.9547 118.367 18.6778 118.769 18.7124C118.769 18.7124 118.893 18.9963 118.783 19.1071C118.526 19.3701 118.436 19.3909 118.16 19.5155C118 19.5848 117.841 19.7786 117.71 19.8478C117.571 19.9171 117.433 19.9794 117.315 20.0625C117.135 20.1663 117.08 20.4017 116.962 20.5263C116.664 20.8033 116.207 20.9417 115.826 21.1702C115.522 21.3294 115.231 21.5094 114.954 21.7102C114.795 21.8002 114.622 21.7794 114.463 21.9041C114.379 21.9594 113.964 22.2018 113.819 22.2364C113.625 22.3264 112.856 22.5687 112.593 22.6172C112.33 22.6656 112.171 22.811 111.942 22.8456C111.804 22.8802 111.236 22.9979 111.105 23.0395C110.932 23.0949 110.246 23.2333 110.004 23.2333C109.215 23.1987 109.284 23.4618 108.515 23.4964C106.771 23.7733 104.493 23.3441 104.036 23.1641C103.614 23.1087 103.427 23.0395 102.651 22.6933C99.8682 21.5302 98.1581 18.3455 97.8951 17.9647C97.632 17.5839 97.3481 16.31 97.175 15.9293C97.0643 15.4031 96.995 14.87 96.9743 14.33C96.905 13.0976 97.0435 11.8861 97.4035 10.7022C97.4035 10.7022 98.2758 7.12283 102.492 3.77889C105.213 1.65344 107.968 1.25881 109.388 0.788024C110.198 0.518015 111.022 0.476476 111.423 0.441859C111.901 0.40032 113.542 0.497246 114.172 0.628788C115.044 0.815717 117.211 1.65344 118.277 2.48423C118.381 2.53269 118.471 2.58808 118.554 2.65731C118.637 2.72655 118.713 2.80962 118.783 2.89963C118.845 2.98963 118.9 3.08656 118.935 3.19041C118.976 3.29425 118.997 3.3981 119.011 3.50888C119.046 3.75119 119.253 3.86889 119.17 4.22198C119.122 4.36044 118.997 4.39506 118.976 4.56814C118.942 4.70661 119.046 4.77584 119.011 4.90046C118.914 5.13585 118.783 5.3574 118.623 5.55817C118.485 5.73125 118.028 6.07742 117.82 6.0428C117.419 5.9528 117.066 5.59279 116.422 5.59279C115.376 5.59279 114.483 5.46817 113.479 5.66202C113.251 5.71741 113.133 5.71741 112.801 5.78664C112.469 5.85587 112.275 5.98049 111.929 6.04972C111.631 6.10511 111.437 6.18819 111.215 6.23665C110.987 6.28512 110.987 6.32666 110.793 6.30589C110.662 6.29204 110.516 6.44435 110.412 6.49282C110.094 6.65205 109.748 6.73513 109.45 6.8736C109.083 7.03976 108.73 7.22668 108.384 7.42746C108.28 7.51746 108.169 7.59362 108.052 7.65593C107.92 7.73208 107.809 7.83593 107.719 7.95363C107.595 8.13364 107.373 8.12671 107.214 8.26518C106.84 8.59057 106.688 8.72904 106.369 9.10982C106.293 9.20675 105.933 9.43521 105.815 9.51829C105.642 9.64291 105.642 9.81599 105.462 9.93369C105.213 10.1137 104.998 10.3283 104.811 10.5776C104.811 10.5776 102.998 12.5784 102.548 14.6623" fill="#FF4747" opacity="0.9"/>
+        <path d="M88.7852 12.6545C88.7852 11.5537 96.8993 10.6675 106.883 10.6675C116.866 10.6675 124.994 11.5537 124.994 12.6545C124.994 13.7553 116.873 14.6415 106.883 14.6415C96.8923 14.6415 88.7852 13.7414 88.7852 12.6545Z" fill="#0168FF" opacity="0.9"/>
+        <path d="M121.213 15.0703C120.396 15.0703 119.725 15.7349 119.725 16.5588C119.725 17.3827 120.389 18.0473 121.213 18.0473C122.037 18.0473 122.702 17.3827 122.702 16.5588C122.702 15.7349 122.037 15.0703 121.213 15.0703Z" fill="#0168FF" opacity="0.9"/>
+      </svg>
+    </div>
+    <div class="footer-links">
+      <a href="#" class="footer-link">Documentación a clientes</a>
+      <a href="#" class="footer-link">Aviso legal</a>
+      <a href="#" class="footer-link">Ejercicio de derechos</a>
+      <a href="#" class="footer-link">Revocación</a>
+      <a href="#" class="footer-link">Tarifas y cotizaciones</a>
+      <a href="#" class="footer-link">Tablón de anuncios</a>
+    </div>
+  </footer>
+
+  <script>
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const btnEntrar = document.getElementById('btnEntrar');
+    const toggleEye = document.getElementById('toggleEye');
+
+    function updateButton() {
+      const hasUser = usernameInput.value.trim().length > 0;
+      const hasPass = passwordInput.value.length > 0;
+      if (hasUser && hasPass) {
+        btnEntrar.classList.remove('disabled');
+      } else {
+        btnEntrar.classList.add('disabled');
+      }
+    }
+
+    usernameInput.addEventListener('input', updateButton);
+    passwordInput.addEventListener('input', updateButton);
+
+    let showPassword = false;
+    toggleEye.addEventListener('click', () => {
+      showPassword = !showPassword;
+      passwordInput.type = showPassword ? 'text' : 'password';
+      toggleEye.querySelector('svg').style.fill = showPassword ? '#0168ff' : '#778088';
+    });
+  </script>
+
+</body>
+</html>
