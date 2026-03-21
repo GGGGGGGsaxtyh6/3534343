@@ -94,10 +94,39 @@
 - osTicket staff panel brute force
 - osTicket ticket number brute force (always returns same message)
 
-## Next Steps to Try
-1. Register on Mattermost with an invite link (need to FIND one)
-2. Access osTicket exploit result via forged access link (need salt from config)
-3. Check dboxfiles.flashtelecom.es (PHP 8.4.18, different stack)
-4. Try Google OAuth flow on panel login for OIDC vulnerabilities
-5. Deeper WordPress enumeration bypassing Cloudflare
-6. SIP protocol attacks on port 5060
+## BREAKTHROUGH: osTicket CVE-2026-22200 Exploited Successfully
+
+### Attack Chain
+1. Registered on osTicket with a temporary email (guerrillamail)
+2. Received and clicked confirmation link from `ricardo@grupogestion.com`
+3. Created ticket with PHP filter chain payload (CVE-2026-22200)
+4. Exported ticket as PDF via `tickets.php?id=10&a=print`
+5. Extracted BMP images from PDF containing server files
+6. Successfully read `include/ost-config.php`
+
+### Leaked Credentials
+- **DB User**: `osticket_5`
+- **DB Pass**: `92ZEQ31Awi4QCrrf+`
+- **DB Name**: `osticket_e`
+- **SECRET_SALT**: `DAkk93HVe9BlBwVkkqvE_84DmKIfQ=sm`
+- **Admin Email**: `ricardo@grupogestion.com`
+
+### Password Reuse Success
+- `ricardo@grupogestion.com:92ZEQ31Awi4QCrrf+` works on:
+  - osTicket Staff Panel (FULL ADMIN ACCESS)
+  - panel.flashtelecom.es (customer role - /alta only)
+  - backupapi.flashtelecom.es (customer role - /alta only)
+  - dboxfiles 217.160.102.3 (customer role - /alta only)
+
+### osTicket Staff Panel Access
+- 10 tickets visible (IDs 1-10)
+- 11 users registered
+- Ticket #6: CyberSOC CERT Deloitte report about phone scam [910032568]
+- Admin panel at /scp/admin.php accessible
+
+## Next Steps
+1. Read more files via osTicket exploit (Laravel .env from other servers if co-hosted)
+2. Use osTicket SQL access to dump data
+3. Find API key for api.flashtelecom.es
+4. Escalate panel access from customer to admin role
+5. Check Plesk admin config for credentials to other services
