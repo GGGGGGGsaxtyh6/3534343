@@ -1,0 +1,78 @@
+package kotlinx.coroutines.flow;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import kotlin.Metadata;
+import kotlin.ResultKt;
+import kotlin.Unit;
+import kotlin.coroutines.Continuation;
+import kotlin.coroutines.intrinsics.IntrinsicsKt;
+import kotlin.jvm.internal.Ref;
+
+/* JADX INFO: compiled from: Limit.kt */
+/* JADX INFO: loaded from: classes3.dex */
+@Metadata(k = 3, mv = {2, 0, 0}, xi = ConstraintLayout.LayoutParams.Table.LAYOUT_CONSTRAINT_VERTICAL_CHAINSTYLE)
+final class FlowKt__LimitKt$take$2$1<T> implements FlowCollector {
+    final /* synthetic */ Ref.IntRef $consumed;
+    final /* synthetic */ int $count;
+    final /* synthetic */ Object $ownershipMarker;
+    final /* synthetic */ FlowCollector<T> $this_flow;
+
+    /* JADX WARN: Multi-variable type inference failed */
+    FlowKt__LimitKt$take$2$1(Ref.IntRef intRef, int i, FlowCollector<? super T> flowCollector, Object obj) {
+        this.$consumed = intRef;
+        this.$count = i;
+        this.$this_flow = flowCollector;
+        this.$ownershipMarker = obj;
+    }
+
+    /* JADX WARN: Code restructure failed: missing block: B:19:0x0053, code lost:
+    
+        if (r5.emit(r7, r0) == r1) goto L25;
+     */
+    /* JADX WARN: Code restructure failed: missing block: B:24:0x0061, code lost:
+    
+        if (kotlinx.coroutines.flow.FlowKt__LimitKt.emitAbort$FlowKt__LimitKt(r5, r7, r8, r0) == r1) goto L25;
+     */
+    /* JADX WARN: Removed duplicated region for block: B:7:0x0014  */
+    @Override // kotlinx.coroutines.flow.FlowCollector
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
+    public final Object emit(T t, Continuation<? super Unit> continuation) throws Throwable {
+        FlowKt__LimitKt$take$2$1$emit$1 flowKt__LimitKt$take$2$1$emit$1;
+        if (continuation instanceof FlowKt__LimitKt$take$2$1$emit$1) {
+            flowKt__LimitKt$take$2$1$emit$1 = (FlowKt__LimitKt$take$2$1$emit$1) continuation;
+            if ((flowKt__LimitKt$take$2$1$emit$1.label & Integer.MIN_VALUE) != 0) {
+                flowKt__LimitKt$take$2$1$emit$1.label -= Integer.MIN_VALUE;
+            } else {
+                flowKt__LimitKt$take$2$1$emit$1 = new FlowKt__LimitKt$take$2$1$emit$1(this, continuation);
+            }
+        }
+        Object obj = flowKt__LimitKt$take$2$1$emit$1.result;
+        Object coroutine_suspended = IntrinsicsKt.getCOROUTINE_SUSPENDED();
+        int i = flowKt__LimitKt$take$2$1$emit$1.label;
+        if (i != 0) {
+            if (i == 1) {
+                ResultKt.throwOnFailure(obj);
+                return Unit.INSTANCE;
+            }
+            if (i != 2) {
+                throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+            }
+            ResultKt.throwOnFailure(obj);
+            return Unit.INSTANCE;
+        }
+        ResultKt.throwOnFailure(obj);
+        this.$consumed.element++;
+        int i2 = this.$consumed.element;
+        int i3 = this.$count;
+        FlowCollector<T> flowCollector = this.$this_flow;
+        if (i2 < i3) {
+            flowKt__LimitKt$take$2$1$emit$1.label = 1;
+        } else {
+            Object obj2 = this.$ownershipMarker;
+            flowKt__LimitKt$take$2$1$emit$1.label = 2;
+        }
+        return coroutine_suspended;
+    }
+}

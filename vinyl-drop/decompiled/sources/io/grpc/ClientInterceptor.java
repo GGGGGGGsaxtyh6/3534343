@@ -1,0 +1,6 @@
+package io.grpc;
+
+/* JADX INFO: loaded from: classes3.dex */
+public interface ClientInterceptor {
+    <ReqT, RespT> ClientCall<ReqT, RespT> interceptCall(MethodDescriptor<ReqT, RespT> methodDescriptor, CallOptions callOptions, Channel channel);
+}
