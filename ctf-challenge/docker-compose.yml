@@ -1,0 +1,11 @@
+services:
+  nginx-ui:
+    build: .
+    container_name: nginx-ui-ctf
+    ports:
+      - "9000:9000"
+    environment:
+      - FLAG=flag{CVE-2026-27944_unauth_backup_l3ak_n1nxUI_cr1t1c4l}
+      - BACKUP_KEY=4e6f7420736f2073656372657421210a
+      - SECRET_KEY=a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2
+    restart: unless-stopped
