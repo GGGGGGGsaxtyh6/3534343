@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nginx UI — Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <svg viewBox="0 0 64 64" width="28" height="28">
+                <rect x="8" y="8" width="48" height="48" rx="8" fill="#009639"/>
+                <text x="32" y="42" font-family="Arial" font-size="24" font-weight="bold" fill="white" text-anchor="middle">N</text>
+            </svg>
+            <span>Nginx UI</span>
+            <span class="version-badge">v2.3.2</span>
+        </div>
+        <div class="nav-links">
+            <span class="nav-user">{{ username }}</span>
+            <a href="/logout" class="btn btn-sm btn-outline">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="sidebar">
+            <ul class="nav-menu">
+                <li class="active"><a href="#">Dashboard</a></li>
+                <li><a href="#">Sites</a></li>
+                <li><a href="#">Streams</a></li>
+                <li><a href="#">Certificates</a></li>
+                <li><a href="#">Access Lists</a></li>
+                <li><a href="#">Configuration</a></li>
+                <li><a href="#">Backup</a></li>
+                <li><a href="#">Terminal</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </div>
+
+        <main class="content">
+            <h2>Dashboard</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Active Sites</h3>
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Running</div>
+                </div>
+                <div class="stat-card">
+                    <h3>SSL Certificates</h3>
+                    <div class="stat-value">2</div>
+                    <div class="stat-label">Valid</div>
+                </div>
+                <div class="stat-card">
+                    <h3>CPU Usage</h3>
+                    <div class="stat-value">24%</div>
+                    <div class="stat-label">4 cores</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Memory</h3>
+                    <div class="stat-value">3.2 GB</div>
+                    <div class="stat-label">of 8 GB</div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>Recent Activity</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Action</th>
+                            <th>User</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody id="audit-log">
+                        <tr><td colspan="4">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="panel">
+                <h3>Nginx Configuration Files</h3>
+                <div id="configs-list">Loading...</div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

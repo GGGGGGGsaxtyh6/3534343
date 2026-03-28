@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nginx UI — Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <div class="login-header">
+            <div class="logo">
+                <svg viewBox="0 0 64 64" width="48" height="48">
+                    <rect x="8" y="8" width="48" height="48" rx="8" fill="#009639"/>
+                    <text x="32" y="42" font-family="Arial" font-size="24" font-weight="bold" fill="white" text-anchor="middle">N</text>
+                </svg>
+            </div>
+            <h1>Nginx UI</h1>
+            <p class="version-tag">v2.3.2</p>
+        </div>
+
+        {% if error %}
+        <div class="alert alert-error">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST" action="/login" class="login-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required autofocus>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign In</button>
+        </form>
+
+        <div class="login-footer">
+            <p>&copy; 2026 Nginx UI Project</p>
+        </div>
+    </div>
+</body>
+</html>
